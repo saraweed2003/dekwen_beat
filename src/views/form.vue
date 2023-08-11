@@ -1,18 +1,27 @@
 <template>
   <div class="form-container">
-    <form class="form">
+    <form class="form bg-green-900/60">
       <div>
-        <label>DEK WEN AUDIO BATTLE</label>
+        <h1 class="text-white pb-[10px] font-bold text-[30px] text-center">
+          DEK WEN AUDIO BATTLE
+        </h1>
       </div>
-      <label for="first-name">First Name:</label>
+      <label class="text-white" for="first-name"
+        >First Name :
+        <div class="text-gray-300 inline">(ชื่อจริง)</div>
+      </label>
       <input
         id="first-name"
         v-model="firstName"
         type="text"
         placeholder="First name"
+        class=""
       />
 
-      <label for="last-name">Last Name:</label>
+      <label class="text-white" for="last-name"
+        >Last Name :
+        <div class="text-gray-400 inline">(นามสกุล)</div></label
+      >
       <input
         id="last-name"
         v-model="lastName"
@@ -20,29 +29,51 @@
         placeholder="Last name"
       />
 
-      <label for="age">Age:</label>
+      <label class="text-white" for="age"
+        >Age :
+        <div class="text-gray-400 inline">(อายุ)</div></label
+      >
       <input id="age" v-model.number="age" type="number" placeholder="Age" />
 
-      <label for="aka">AKA:</label>
+      <label class="text-white" for="aka">AKA :</label>
       <input id="aka" v-model="aka" type="text" placeholder="AKA" />
 
-      <label for="email">Email:</label>
+      <label class="text-white" for="email">Email :</label>
       <input id="email" v-model="email" type="email" placeholder="Email" />
 
-      <label for="image">Upload Image:</label>
+      <label class="text-white" for="province"
+        >Province :
+        <div class="text-gray-400 inline">(จังหวัด)</div></label
+      >
+      <input
+        id="province"
+        v-model="province"
+        type="province"
+        placeholder="province"
+      />
+
+      <label class="text-white" for="image"
+        >Upload Image :
+        <div class="text-gray-400 inline">(อัปโหลดไฟล์รูป)</div></label
+      >
       <input
         id="image"
         @change="handleImageUpload"
         type="file"
         accept="image/*"
+        class="bg-white"
       />
 
-      <label for="audio">Upload Audio:</label>
+      <label class="text-white" for="audio"
+        >Upload Audio :
+        <div class="text-gray-400 inline">(อัปโหลดไฟล์เสียง)</div></label
+      >
       <input
         id="audio"
         @change="handleAudioUpload"
         type="file"
         accept="audio/*"
+        class="bg-white"
       />
 
       <button type="submit" @click="handleSubmit">Submit</button>
@@ -58,6 +89,7 @@ const lastName = ref("");
 const age = ref(0);
 const aka = ref("");
 const email = ref("");
+const province = ref("");
 let image = null;
 let audio = null;
 
@@ -75,6 +107,7 @@ const handleSubmit = () => {
     lastName: lastName.value,
     age: age.value,
     aka: aka.value,
+    province: province.value,
     email: email.value,
     image: image,
     audio: audio,
@@ -94,8 +127,8 @@ const handleSubmit = () => {
 }
 
 .form {
-  max-width: 600px;
-  width: 90%;
+  max-width: 500px;
+  width: 100%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
