@@ -12,14 +12,20 @@ const router = createRouter({
       children: [
         {
           path: "/",
-          name: "form",
-          component: () => import("../views/form.vue"),
+          name: "dashboard",
+          component: () => import("../views/FormTest.vue"),
         },
         {
           path: "/form",
-          name: "formT",
-          component: () => import("../views/FormTest.vue"),
+          name: "form",
+          component: () => import("../views/form.vue"),
         },
+         {
+          path: "/download",
+          name: "download",
+          component: () => import("../views/downloadFile.vue"),
+        },
+
       ],
     },
   ],

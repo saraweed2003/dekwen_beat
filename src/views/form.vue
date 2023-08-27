@@ -1,164 +1,321 @@
 <template>
-  <div class="form-container">
-    <form class="form bg-green-900/60">
-      <div>
-        <h1 class="text-white pb-[10px] font-bold text-[30px] text-center">
-          DEK WEN AUDIO BATTLE
-        </h1>
+  <div class="overflow-y-auto h-full">
+    <!-- component -->
+    <div
+      class="min-h-screen p-6 bg-black/50 flex items-center justify-center font-Kanit"
+    >
+      <div class="container max-w-screen-lg mx-auto">
+        <div>
+         
+
+          <div class="bg-black/80 rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              <div class="text-white">
+                 <h2 class="font-semibold text-xl text-white ">
+            Dekwen Audio Rap Battle
+          </h2>
+          <p class="text-gray-200 mb-6 ">แบบฟอร์มกรอกข้อมูล</p>
+                <p class="font-bold text-sm">Personal Details</p>
+                <p>กติกา</p>
+
+                <div class="flex items-center justify-center">
+                  <img src="src\assets\DEKWEN.png" class="image" />
+                </div>
+                <p class="pb-[5px]">ติดต่อสอบถามเพิ่มเติม</p>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100095485360887"
+                  class="text-green-600 text-[19px] hover:text-green-400"
+                  >DekWen Audio battle</a
+                >
+              </div>
+
+              <div class="lg:col-span-2">
+                <div
+                  class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5"
+                >
+                  <div class="md:col-span-5">
+                    <label for="first_name" class="text-white">First Name</label>
+                    <input
+                      type="text"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder="ชื่อ"
+                      required
+                    />
+                  </div>
+
+                   <div class="md:col-span-5">
+                    <label for="last_name" class="text-white">Last Name</label>
+                    <input
+                      type="text"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder="นามสกุล"
+                      required
+                    />
+                  </div>
+
+                  <div class="md:col-span-3">
+                    <label for="aka" class="text-white">AKA</label>
+                    <input
+                      type="text"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder="AKA"
+                      required
+                    />
+                  </div>
+
+                  <div class="md:col-span-2">
+                    <label for="age" class="text-white">Age</label>
+                    <input
+                      type="number"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder=""
+                      required
+                    />
+                  </div>
+
+                  <div class="md:col-span-5">
+                    <label for="email" class="text-white">Email</label>
+                    <input
+                      type="text"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder="email@domain.com"
+                      required
+                    />
+                  </div>
+
+
+
+                  <div class="md:col-span-5">
+                    <label for="image" class="text-white">Image</label>
+                    <div class="max-w-2xl rounded shadow-xl bg-gray-50 mt-1">
+                      <div class="p-[10px]">
+                        <div class="flex w-full">
+                          <input
+                            type="file"
+                            ref="fileInput"
+                            @change="handleFileUpload"
+                            required
+                          />
+
+                          <button
+                            @click="openModal"
+                            v-if="selectedImage"
+                            class="text-green-700 pl-[10px]"
+                          >
+                            View
+                          </button>
+
+                          <div v-if="modalOpen" class="modal">
+                            <div class="modal-content rounded-lg">
+                              <img
+                                :src="selectedImage"
+                                alt="Uploaded Image"
+                                class="rounded-lg"
+                              />
+                              <button @click="closeModal" class="text-red-500">
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="md:col-span-5">
+                    <label for="image" class="text-white">Audio</label>
+                    <div class="max-w-2xl rounded shadow-xl bg-gray-50 mt-1">
+                      <div class="p-[10px]">
+                        <div class="flex w-full">
+                          <div>
+                            <input
+                              type="file"
+                              ref="audioInput"
+                              @change="handleAudioUpload"
+                              accept="audio/*"
+                              required
+                            />
+
+                            <button
+                              @click="openAudioModal"
+                              v-if="selectedAudio"
+                              class="text-green-700 pl-[10px]"
+                            >
+                              Play
+                            </button>
+
+                            <div v-if="audioModalOpen" class="audio-modal">
+                              <div
+                                class="audio-modal-content w-[500px] rounded-lg"
+                              >
+                                <audio controls :src="selectedAudio"></audio>
+                                <button
+                                  @click="closeAudioModal"
+                                  class="text-red-500"
+                                >
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="md:col-span-5">
+                    <label for="contact" class="text-white">Contact (ลิงค์ช่องทางติดต่อ)</label>
+                    <input
+                      type="text"
+                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      value=""
+                      placeholder="www.facebook.com"
+                      required
+                    />
+                  </div>
+
+                  <div class="md:col-span-5 text-right">
+                    <div class="inline-flex items-end">
+                      <button
+                        class="bg-black border border-white text-white hover:bg-white hover:text-black font-bold py-2 px-4 rounded"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <label class="text-white" for="first-name"
-        >First Name :
-        <div class="text-gray-300 inline">(ชื่อจริง)</div>
-      </label>
-      <input
-        id="first-name"
-        v-model="firstName"
-        type="text"
-        placeholder="First name"
-        class=""
-      />
-
-      <label class="text-white" for="last-name"
-        >Last Name :
-        <div class="text-gray-400 inline">(นามสกุล)</div></label
-      >
-      <input
-        id="last-name"
-        v-model="lastName"
-        type="text"
-        placeholder="Last name"
-      />
-
-      <label class="text-white" for="age"
-        >Age :
-        <div class="text-gray-400 inline">(อายุ)</div></label
-      >
-      <input id="age" v-model.number="age" type="number" placeholder="Age" />
-
-      <label class="text-white" for="aka">AKA :</label>
-      <input id="aka" v-model="aka" type="text" placeholder="AKA" />
-
-      <label class="text-white" for="email">Email :</label>
-      <input id="email" v-model="email" type="email" placeholder="Email" />
-
-      <label class="text-white" for="province"
-        >Province :
-        <div class="text-gray-400 inline">(จังหวัด)</div></label
-      >
-      <input
-        id="province"
-        v-model="province"
-        type="province"
-        placeholder="province"
-      />
-
-      <label class="text-white" for="image"
-        >Upload Image :
-        <div class="text-gray-400 inline">(อัปโหลดไฟล์รูป)</div></label
-      >
-      <input
-        id="image"
-        @change="handleImageUpload"
-        type="file"
-        accept="image/*"
-        class="bg-white"
-      />
-
-      <label class="text-white" for="audio"
-        >Upload Audio :
-        <div class="text-gray-400 inline">(อัปโหลดไฟล์เสียง)</div></label
-      >
-      <input
-        id="audio"
-        @change="handleAudioUpload"
-        type="file"
-        accept="audio/*"
-        class="bg-white"
-      />
-
-      <button type="submit" @click="handleSubmit">Submit</button>
-    </form>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const firstName = ref("");
-const lastName = ref("");
-const age = ref(0);
-const aka = ref("");
-const email = ref("");
-const province = ref("");
-let image = null;
-let audio = null;
+const fileInput = ref(null);
+const selectedImage = ref("");
+const modalOpen = ref(false);
 
-const handleImageUpload = (event) => {
-  image = event.target.files[0];
+const handleFileUpload = () => {
+  const file = fileInput.value.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      selectedImage.value = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 };
 
-const handleAudioUpload = (event) => {
-  audio = event.target.files[0];
+const openModal = () => {
+  modalOpen.value = true;
 };
 
-const handleSubmit = () => {
-  const formData = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    age: age.value,
-    aka: aka.value,
-    province: province.value,
-    email: email.value,
-    image: image,
-    audio: audio,
-  };
+const closeModal = () => {
+  modalOpen.value = false;
+};
 
-  // Store the form data in local storage
-  localStorage.setItem("formData", JSON.stringify(formData));
+const audioInput = ref(null);
+const selectedAudio = ref("");
+const audioModalOpen = ref(false);
+
+const handleAudioUpload = () => {
+  const file = audioInput.value.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      selectedAudio.value = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const openAudioModal = () => {
+  audioModalOpen.value = true;
+};
+
+const closeAudioModal = () => {
+  audioModalOpen.value = false;
 };
 </script>
 
 <style scoped>
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.image {
+  width: 300px; /* กำหนดความกว้างของรูป */
+  height: auto; /* ให้ความสูงปรับตามสัดส่วนของรูป */
 }
 
-.form {
-  max-width: 500px;
-  width: 100%;
-  padding: 20px;
+.image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-label {
-  font-weight: bold;
-  margin-top: 10px;
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal {
   display: block;
-}
-
-input,
-button {
-  margin-top: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-input[type="file"] {
-  padding: 5px 0;
+img {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.audio-modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.audio-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+audio {
+  width: 100%;
+  margin-bottom: 10px;
 }
 </style>
