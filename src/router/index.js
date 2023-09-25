@@ -10,18 +10,8 @@ const router = createRouter({
       name: "Home",
       meta: { layout: main },
       children: [
-        {
-          path: "/",
-          name: "dashboard",
-          component: () => import("../views/FormTest.vue"),
-        },
-        {
-          path: "/form",
-          name: "form",
-          component: () => import("../views/form.vue"),
-        },
          {
-          path: "/download",
+          path: "/",
           name: "download",
           component: () => import("../views/downloadFile.vue"),
         },
