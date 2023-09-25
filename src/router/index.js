@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Home",
+      name: "download",
       meta: { layout: main },
       children: [
          {
